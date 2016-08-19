@@ -1,7 +1,6 @@
 package com.ithxh.xhh.base;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.code.kaptcha.Constants;
-import com.ithxh.baseCore.baseUtils.DateUtils;
 import com.ithxh.baseCore.baseUtils.ListUtil;
 import com.ithxh.baseCore.baseUtils.WebUtils;
 import com.ithxh.baseCore.model.ReturnMessage;
@@ -22,7 +20,6 @@ import com.ithxh.xhh.constant.StaticConst;
 import com.ithxh.xhh.constant.StaticConst.ReturnMsg;
 import com.ithxh.xhh.entity.UploadFile;
 import com.ithxh.xhh.service.UploadFileService;
-import com.ithxh.xhh.service.impl.EmailSender;
 import com.ithxh.xhh.tools.SysConfigUtil;
 import com.ithxh.xhh.vo.formbean.BookVo;
 import com.ithxh.xhh.vo.formbean.UploadFileVo;
@@ -37,9 +34,6 @@ public class BaseController {
 	@Autowired
 	UploadFileService uploadFileService;
 	
-	@Autowired
-	EmailSender emailSender;
-
 	public static ThreadLocal<HttpServletRequest> Thread_Local_Request = new ThreadLocal<HttpServletRequest>();
 	public static ThreadLocal<HttpServletResponse> Thread_Local_Response = new ThreadLocal<HttpServletResponse>();
 	
@@ -368,48 +362,7 @@ public class BaseController {
 		return SysConfigUtil.getSysConfig().getSysBasePath();
 	}
 
-	/**
-	 * @category 发送邮件激活二手书账号
-	 * @param recipient         收件人
-	 * @param emailAddress      收件人邮箱地址
-	 * @param subject           邮件主题
-	 * @param contents          邮件内容
-	 * @retrun void
-	 */
-	public void sendEmail(String recipient, String emailAddress, String subject, String contents) {
-
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put("email", recipient);
-		hm.put("url", contents);
-		hm.put("time", DateUtils.getNowDateTime());
-		String template = "email/regActive.ftl";
-		this.emailSender.sendSyncTemplateEmail(hm, subject, new String[] { emailAddress }, template);
-	}
 	
-	/**
-	 * @category 发送邮件通知卖家或买家
-	 * @param recipient         收件人
-	 * @param emailAddress      收件人邮箱地址
-	 * @param subject           邮件主题
-	 * @param contents          邮件内容
-	 * @retrun void
-	 */
-	public void sendBuyEmail(String recipient, String emailAddress, String subject, String contents) {
-
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put("user", recipient);
-		hm.put("content", contents);
-		hm.put("time", DateUtils.getNowDateTime());
-		String template = "email/remindTips.ftl";
-		this.emailSender.sendSyncTemplateEmail(hm, subject, new String[] { emailAddress }, template);
-	}
-	
-	public void sendSimpleEmail(String[] mailTo, String subject, String contents) {
-		
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put("email", mailTo);
-		this.emailSender.sendSyncSimpleEmail(subject, mailTo, contents);
-	}
 
 	/**
 	 * @category 获取验证码

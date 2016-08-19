@@ -25,7 +25,6 @@ import com.ithxh.baseCore.baseUtils.IDGenerator;
 import com.ithxh.baseCore.baseUtils.WebUtils;
 import com.ithxh.xhh.constant.StaticConst;
 import com.ithxh.xhh.controller.pub.QNUpload;
-import com.ithxh.xhh.task.DownloadImgTask;
 import com.ithxh.xhh.tools.SysConfigUtil;
 import com.ithxh.xhh.vo.formbean.UploadFileVo;
 
