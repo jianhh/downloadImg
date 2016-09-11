@@ -36,7 +36,7 @@ public class StaticConst {
 	
 	
 	//网络图片保存路径-京东
-	public static final String JD_BOOKPIC_PATH = "/xhh/book/official/net/lsm/";
+	public static final String JD_BOOKPIC_PATH = "/xhh/book/official/net/lsm1/";
 	//网络图片保存路径-天猫
 	public static final String TM_BOOKPIC_PATH = "/xhh/book/official/net/tianmao/";
 	//网络图片保存路径-豆瓣

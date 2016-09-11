@@ -121,7 +121,7 @@ public class LSMAdaptor extends BaseParser implements Serializable {
 		final String forumUrl = job.getForum();
 
 		// 每一页
-		for (int i = 1; i < 10; i++) {
+		for (int i = 1; i < 3; i++) {
 			final StringBuilder sb = new StringBuilder();
 			sb.append(forumUrl).append(i);
 			Thread thread = new Thread(new Runnable() {
@@ -275,7 +275,7 @@ public class LSMAdaptor extends BaseParser implements Serializable {
 											} else {
 												uploadfile
 														.setUploaddest("local");
-												String savepath = StaticConst.JD_BOOKPIC_PATH;
+												String savepath = StaticConst.JD_BOOKPIC_PATH+DateUtils.getNowDate();
 												uploadfile.setUploadfilepath(savepath
 														+ "/"
 														+ pro.getTitle()

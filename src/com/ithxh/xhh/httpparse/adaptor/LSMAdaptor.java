@@ -11,7 +11,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Service;
 
 import com.ithxh.baseCore.baseUtils.DateUtils;
 import com.ithxh.baseCore.baseUtils.IDGenerator;
@@ -324,7 +323,5 @@ public class LSMAdaptor extends BaseParser{
 			});
 			poolTaskExecutor.execute(thread);
 		} while (pager.getTotalCount()>0);
-		
-		
 	}
 }
